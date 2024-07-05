@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Registrazione Dipendente</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="registraDipendente.js" defer></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Favicons -->
+
+    <!-- <meta name="theme-color" content="#7952b3"> -->
+
+
+</head>
+
+<body class="bg-light">
+
+    <div class="container-md">
+        <main>
+            <div class="py-5 text-center">
+                <h2>Registra un dipendente</h2>
+                 <p >Dopo aver premuto sul pulsante "Carica Documento", bisogna attendere la notifica che indica la riuscita del caricamento</p>
+            </div>
+
+            <div class="col-md-auto">
+                <form class="needs-validation" id="MainForm" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-8">
+                            <label for="dipName" class="form-label">Nome e cognome del dipendente</label>
+                            <input type="text" class="form-control" id="dipName" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Inserire nome e cognome.
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label>Questo dipendente è un responsabile del cantiere?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioRSP" id="noRSP"
+                                        value="no" checked>
+                                    <label class="form-check-label" for="radioRSP">
+                                        NO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioRSP" id="siRSP"
+                                        value="si">
+                                    <label class="form-check-label" for="radioRSP">
+                                        SI
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-8" id="emailRSPContainer">
+                            <label for="email" class="form-label">Email</label>
+                            <small id="emailHelpInline" class="text-muted">
+                                (serve per accedere al sito)
+                            </small>
+                            <input type="email" class="form-control" id="email" placeholder="email@example.com">
+                            <div class="invalid-feedback">
+                                Inserire un'email valida.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6" id="passwordRSPContainer">
+                            <label for="password" class="form-label">Password </label>
+                            <small id="passwordHelpInline" class="text-muted">
+                                (serve per accedere al sito - deve contenere almeno 6 caratteri)
+                            </small>
+                            <input type="password" class="form-control" id="password" placeholder="password"
+                                autocomplete="on">
+                            <div class="invalid-feedback">
+                                Inserire una password valida.
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6" id="confermaRSPContainer">
+                            <label for="controlPassword" class="form-label">Conferma la Password</label>
+                            <input type="password" class="form-control" id="controlPassword" placeholder="password"
+                                autocomplete="on">
+                            <div class="invalid-feedback">
+                                Le password non corrispondono.
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <div class="col-12 text-center">
+                            <h5>DOCUMENTI IDENTIFICATIVI</h5>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="CI" class="form-label">Documento d'Identità</label>
+                            <input type="file" id="inputCI" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadCIButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="PMS" class="form-label">Permesso di Soggiorno</label>
+                            <input type="file" id="inputPMS" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadPMSButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="IA" class="form-label">Tesserino Identificativo Aziendale</label>
+                            <input type="file" id="inputIA" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadIAButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserire un Tesserino Identificativo Aziendale.
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <div class="col-12 text-center">
+                            <h5>Modello Unificato UNILAV</h5>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="unilav" class="form-label">UniLav </label>
+
+                            <input type="file" id="inputUN" class="form-control mb-3" required> <!-- required da aggiungere-->
+                            <div class="invalid-feedback">
+                                Inserire il documento UniLav.
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                            <button id="uploadUNButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                        </div>
+                        <div class="col-5">
+                            <label>L'UniLav è indeterminato?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioUnilav" id="siUnilav"
+                                        value="si" checked>
+                                    <label class="form-check-label" for="radioUnilav">
+                                        SI
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="radioUnilav" id="noUnilav"
+                                        value="no">
+                                    <label class="form-check-label" for="radioUnilav">
+                                        NO
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12" id="scadenzaUnilav">
+                            <label for="UNScadenza" class="form-label">Scadenza dell'UniLav</label>
+                            <!-- data di scadenza -->
+                            <input type="text" class="form-control" id="inputUNScadenza" placeholder="GG/MM/AAAA">
+                            <div class="invalid-feedback">
+                                Inserire una scadenza.
+                            </div>
+                            <div class="text-danger hidden" id="scadenzaUNWarning">UniLav scaduto!</div>
+                        </div>
+
+                        <hr class="my-4">
+                        <div class="col-12 text-center">
+                            <h5>IDONEITÀ SANITARIA</h5>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label for="IS" class="form-label">Idoneità Sanitaria</label>
+                            <input type="file" id="inputIS" class="form-control mb-3" required>
+                            <div class="invalid-feedback">
+                                Inserire un documento di Idoneità Sanitaria.
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadISButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="ISScadenza" class="form-label">Data di rilascio dell'Idoneità Sanitaria</label>
+                            <small id="ISHelpInline" class="text-muted">
+                                (validità 1 anno)
+                            </small>
+                            <input type="text" class="form-control" id="inputISScadenza" placeholder="GG/MM/AAAA"
+                                required>
+                                <div class="text-danger hidden" id="scadenzaISWarning">Idineità sanitaria scaduta!</div>
+
+                            <div class="invalid-feedback">
+                                Inserire la data di rilascio.
+                            </div>
+                        </div>
+
+
+                        <hr class="my-4">
+                        <div class="col-12 text-center">
+                            <h5>FORMAZIONE GESTIONE EMERGENZE</h5>
+                        </div>
+
+                        <div class="col-12">
+                            <label>Questo dipendente è formato nella squadra di gestione emergenze?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gestioneEmergenze"
+                                        id="noGE" value="no" checked>
+                                    <label class="form-check-label" for="gestioneEmergenze">
+                                        NO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gestioneEmergenze"
+                                        id="siGE" value="si">
+                                    <label class="form-check-label" for="gestioneEmergenze">
+                                        SI
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12" id="tipoAttestato">
+                            <label>Che tipo di Attestato Primo Soccorso possiede il dipendente?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="abc"
+                                        id="a" value="si">
+                                    <label class="form-check-label" for="abc">
+                                        A
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="abc"
+                                        id="bc" value="no">
+                                    <label class="form-check-label" for="abc">
+                                        BC
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Primo soccorso A - B C -->
+                        <!-- CAMBIARE HELPLINE-->
+
+                        <div class="col-md-6" id="attestatoPS">
+                            <label for="PS" class="form-label"> Attestato Primo Soccorso </label>
+                            <small id="PSHelpInline" class="text-muted">
+                                (inserire il più recente)
+                            </small>
+                            <input type="file" id="inputPS" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadPSButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserire un documento di Attestato Primo Soccorso.
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="rilascioPS">
+                            <label for="PSScadenza" class="form-label">Data di rilascio dell'Attestato Primo
+                                Soccorso</label>
+                            <small id="PSHelpInline" class="text-muted">
+                                (validità 3 anni)
+                            </small>
+                            <!-- mettere in diretta che diventa ROSSO se scaduto -->
+                            <input type="text" class="form-control" id="inputPSScadenza" placeholder="GG/MM/AAAA">
+                            <div class="text-danger hidden" id="scadenzaPSWarning">Attestato di primo soccroso scaduto!</div>
+
+                            <div class="invalid-feedback">
+                                Inserire la data di rilascio.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label>Il dipendente possiede un Attestato Antincendio?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isAI"
+                                        id="noAI" value="no" checked>
+                                    <label class="form-check-label" for="isAI">
+                                        NO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isAI"
+                                        id="siAI" value="si">
+                                    <label class="form-check-label" for="isAI">
+                                        SI
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6" id="attAIContainer">
+                            <label for="AI" class="form-label"> Attestato Antincendio </label>
+                            <small id="AIHelpInline" class="text-muted">
+                                (inserire il più recente)
+                            </small>
+                            <input type="file" id="inputAI" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadAIButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserire un documento di Attestato Antincendio.
+                            </div>
+                        </div>
+                        <div class="col-md-6" id="rilAIContainer">
+                            <label for="AIScadenza" class="form-label">Data di rilascio dell'Attestato Antincendio</label>
+                            <small id="AIHelpInline" class="text-muted">
+                                (validità 5 anni)
+                            </small>
+                            <!-- mettere in diretta che diventa ROSSO se scaduto -->
+                            <input type="text" class="form-control" id="inputAIScadenza" placeholder="GG/MM/AAAA">
+                            <div class="text-danger hidden" id="scadenzaAIWarning">Attestato Antincendio scaduto!</div>
+
+                            <div class="invalid-feedback">
+                                Inserire la data di rilascio.
+                            </div>
+                            <div class="text-danger hidden" id="scadenzaAIWarning">Attestato Antincendio scaduto!</div>
+                        </div>
+
+
+                        <hr class="my-4">
+                        <div class="col-12 text-center">
+                            <h5>CORSI DI FORMAZIONE</h5>
+                        </div>
+
+                        <div class="col-12">
+                            <label>Il dipendente è un Preposto?</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isPreposto"
+                                        id="noPRE" value="no" checked>
+                                    <label class="form-check-label" for="isPreposto">
+                                        NO
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="isPreposto"
+                                        id="siPRE" value="si">
+                                    <label class="form-check-label" for="isPreposto">
+                                        SI
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6" id="attestatoPRE">
+                            <label for="PR" class="form-label"> Attestato di formazione per il ruolo di Preposto  </label>
+                            <small id="PRHelpInline" class="text-muted">
+                                (inserire il più recente)
+                            </small>
+                            <input type="file" id="inputPR" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadPRButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserire un Attestato di formazione per il ruolo di Preposto.
+                            </div>
+                        </div>
+                        <div class="col-md-6"  id="rilascioPRE">
+                            <label for="PRScadenza" class="form-label">Data di rilascio dell'Attestato per il ruolo di Preposto</label>
+                            <small id="PRHelpInline" class="text-muted">
+                                (validità 5 anni)
+                            </small>
+                            <!-- mettere in diretta che diventa ROSSO se scaduto -->
+                            <input type="text" class="form-control" id="inputPRScadenza" placeholder="GG/MM/AAAA">
+                            <div class="text-danger hidden" id="scadenzaPRWarning">Attestato per i ruolo di Preposto scaduto!</div>
+
+                            <div class="invalid-feedback">
+                                Inserire la data di rilascio.
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="FG" class="form-label">Corso di Formazione Generale</label>
+                            <input type="file" id="inputFG" class="form-control mb-3">
+                            <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                                <button id="uploadFGButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                            </div>
+                            <div class="invalid-feedback">
+                                Inserire un Corso di formazione generale.
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label for="SP" class="form-label"> Attestato di formazione specifica </label>
+                            <small id="SPHelpInline" class="text-muted">
+                                (inserire il più recente)
+                            </small>
+                            <input type="file" id="inputSP" class="form-control mb-3">
+                            <div class="invalid-feedback">
+                                Inserire un Attestato di formazione per il ruolo di Preposto.
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-bottom justify-content-center mx-auto"> 
+                            <button id="uploadSPButton" class="btn btn-primary mb-3 p-2">Carica Documento</button>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="SPScadenza" class="form-label">Data di rilascio dell'Attestato di formazione specifica</label>
+                            <small id="passwordHelpInline" class="text-muted">
+                                (validità 5 anni)
+                            </small>
+                            <!-- mettere in diretta che diventa ROSSO se scaduto -->
+                            <input type="text" class="form-control" id="inputFSScadenza" placeholder="GG/MM/AAAA">
+                            <div class="text-danger hidden" id="scadenzaFSWarning">Attestato di Formazione Specifica scaduto!</div>
+                            <div class="invalid-feedback">
+                                Inserire la data di rilascio.
+                            </div>
+                        </div>
+
+                        
+
+
+                    </div>
+
+
+
+
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-md-6"   href="dipendenti.html">
+                            <button id="undo" class="w-100 btn btn-secondary  btn-lg" type="c">Annulla</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button id="createButton" class="w-100 btn btn-primary btn-lg" type="submit">Crea dipendente</button>
+                        </div>
+                        
+                    </div>
+
+                    <div class="col">
+
+                    </div>
+
+                    <hr class="my-4">
+
+
+                    
+
+
+                </form>
+
+            </div>
+        </main>
+
+        <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2024 sito Sicurezza</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+      </ul>
+    </footer> -->
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

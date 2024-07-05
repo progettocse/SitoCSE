@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagina Principale</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+  <script type="module" src="home.js" defer></script>
+  <script type="module" src="notifica.js" defer></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-md-auto">
+        <div class="flex-shrink p-3 bg-white">
+          <a class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+            <svg class="bi me-2" width="30" height="24">
+              <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-5 fw-semibold" id="creds"></span>
+          </a>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <a class="btn btn-toggle align-items-center rounded" href="home.html">
+                Home
+              </a>
+            </li>
+            <li class="mb-1">
+              <a class="btn btn-toggle align-items-center rounded">
+                Notifiche
+              </a>
+            </li>
+            <li class="mb-1">
+              <a id="dipendentiA"></a>
+            </li>
+
+            <li class="mb-1">
+              <a class="btn btn-toggle align-items-center rounded">
+                Account
+              </a>
+            </li>
+            <li class="border-top my-3"></li>
+            <li class="mb-1">
+              <div class="col text-center">
+
+                <button class="btn btn-outline-primary text-center my-2 my-sm-0" id="logout">ESCI</button>
+              </div>
+
+
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="container my-5">
+          <div class="row">
+            <div class="col-6">
+              <h1 class="mb-4 col-sm">LISTA DEI CANTIERI</h1>
+            </div>
+            <div class="col-4" id="addbtn"></div> <!-- CREA BOTTONE MODIFICA PER LA LISTA DEI CANTIERI-->
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">Crea un cantiere</h5>
+                </div>
+                <div class="modal-body">
+                  <form class="needs-validation" id="MainForm" novalidate>
+                    <div class="row g-3">
+                      <div class="col-sm-8">
+                        <label for="cantiereName" class="form-label">Nome del cantiere</label>
+                        <input type="text" class="form-control" id="cantiereName" placeholder="" value="" required>
+                        <div class="invalid-feedback">
+                          Inserire il nome del cantiere.
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="startDate" class="form-label">Data di inizio</label>
+                        <input type="text" class="form-control" id="startDate" placeholder="XX/XX/XXXX" required>
+                        <div class="invalid-feedback">
+                          Inserire un'email valida.
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="endDate" class="form-label">Presunta data di fine</label>
+                        <input type="text" class="form-control" id="endDate" placeholder="XX/XX/XXXX" required>
+                        <div class="invalid-feedback">
+                          Inserire un'email valida.
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="cantiereAddress" class="form-label">Indirizzo</label>
+                        <input type="text" class="form-control" id="cantiereAddress" placeholder="" required>
+                        <div class="invalid-feedback">
+                          Inserire un indirizzo.
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label for="provinciaCantiere" class="form-label">Provincia</label>
+                        <input type="text" class="form-control" id="provinciaCantiere" placeholder="" required>
+                        <div class="invalid-feedback">
+                          Inserire una provincia.
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <label for="aziende" class="form-label">Aggiungi le aziende:</label>
+                        <div class="input-group mb-3">
+                          <select class="form-select" id="elencoAziende">
+                            <option value="" selected>Scegli un'azienda</option>
+                            <!-- QUI VENGONO AGGIUNTE IN AUTOMATICO LE AZIENDE -->
+                          </select>
+                          <button class="btn btn-primary" type="button" id="addAziendaBtn">Aggiungi</button>
+                        </div>
+                        <div id="aziende-selezionate" class="mb-3"></div>
+                        <div class="invalid-feedback" id="aziendeFeedback">
+                          Inserire almeno un'azienda.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                      <button class="btn btn-primary" type="submit" id="creaCantiere">Crea cantiere</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="cantieri">
+            <div class="card mb-3" id="placeholder">
+              <div class="card-body d-flex align-items-center">
+                <div class="flex-grow-1 placeholder-glow">
+                  <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-3"></span>
+                  </h5>
+                  <p class="card-text placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-6"></span>
+                  </p>
+                </div>
+                <div class="approval-box text-center">
+                  <a href="#" class="btn bg-dark btn-secondary mt-2 placeholder">ENTRA</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row"><button class="btn btn-primary mb-3" id="notifica">INVIA UNA NOTIFICA</button></div>
+          <!--
+          <div class="container my-5">
+            <div class="row">
+              <div class="col">
+                <h1 class="mb-4 col-sm">NOTIFICHE</h1>
+              </div>
+              <div id="notifiche"> Lista notifiche </div>
+            </div>
+          </div>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

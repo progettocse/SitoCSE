@@ -1,0 +1,95 @@
+.radio-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    background-color: #e3f2fd;
+}
+
+.approval-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.approval-status {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+#gantt {
+  width: 100%;
+  height: 500px; /* Regolare l'altezza come desiderato */
+}
+
+// -----
+
+.sidebar-content {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .sidebar-content {
+    display: block !important;
+  }
+  .sidebar-toggle {
+    display: none !important;
+  }
+}
+
+.hidden {
+  display: none;
+}
+.text-danger {
+  color: red;
+}
