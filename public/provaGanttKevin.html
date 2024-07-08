@@ -4,21 +4,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dipendenti</title>
+  <title>Pagina Principale</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-  <script type="module" src="dipendenti.js" defer></script>
+  <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-bundle.min.js"></script>
 
 
+  <script type="module" src="provaGanttKevin.js" defer></script>
+  <!-- <script type="module" src="gantt.js" defer></script> -->
   <link rel="stylesheet" href="styles.css">
-
 
 
 
 </head>
 
 <body>
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 col-md-auto">
@@ -41,15 +43,14 @@
               </a>
             </li>
             <li class="mb-1">
-              <a class="btn btn-toggle align-items-center rounded" href="dipendenti.html">
-                Dipendenti
-              </a>
+              <a id="dipendentiA"></a>
             </li>
             <li class="mb-1">
               <a class="btn btn-toggle align-items-center rounded">
                 Account
               </a>
             </li>
+            
             <li class="border-top my-3"></li>
             <li class="mb-1">
               <div class="col text-center">
@@ -64,14 +65,12 @@
       </div>
 
       <div class="col">
+        <h2 id="nomeCantiere" class="text-center"></h2>
 
         <div class="container my-5">
-          <div class="row text-center">
-            <button class="btn btn-primary mb-3" id="aggiungiDip">AGGIUNGI UN DIPENDENTE</button>
-          </div>
           <div class="row">
-            <div class="col-6">
-              <h1 class="mb-4 col-sm">LISTA DEI DIPENDENTI</h1>
+            <div class="col">
+              <h1 class="mb-4 col-sm">CRONOPROGRAMMA</h1>
             </div>
 
             <div class="col"></div>
@@ -79,61 +78,68 @@
             <div class="col"><button class="btn btn-primary mb-3" id="modifica">MODIFICA</button>
             </div>
 
+            <div class="container">
+              <div id="gantt"></div>
+            </div>
+
           </div>
-          <div class="row">
+          <div class="container my-5">
+            <div class="row">
+              <div class="col">
+                <h1 class="mb-4 col-sm" id="aziOrDip"></h1>
+              </div>
 
 
-            <div id="dipendenti">
+              <div class="col"><button class="btn btn-primary mb-3" id="modifica">MODIFICA</button>
+              </div>
 
-              <div class="card mb-3" id="placeholder">
 
-                <div class="text-center" id="hintDipText">
-                  <h5 class="font-weight-bold"> REGISTRA DEI DIPENDENTI CLICCANDO IL BOTTONE "AGGIUNGI UN DIPENDENTE"
-                  </h5>
-                </div>
-                <div class="card-body d-flex align-items-center">
-                  <div class="flex-grow-1 placeholder-glow">
-                    <h5 class="card-title placeholder-glow">
-                      <span class="placeholder col-3"></span>
-                    </h5>
+              <div id="aziende">
 
-                    <p class="card-text placeholder-glow">
-                      <span class="placeholder col-6"></span>
-                      <span class="placeholder col-6"></span>
-                    </p>
+                <div class="card mb-3" id="placeholder">
+                  <div class="card-body d-flex align-items-center">
+                    <div class="flex-grow-1 placeholder-glow">
+                      <h5 class="card-title placeholder-glow">
+                        <span class="placeholder col-3"></span>
+                      </h5>
 
+                      <p class="card-text placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                        <span class="placeholder col-6"></span>
+                      </p>
+
+                    </div>
+
+                    <div class="approval-box text-center">
+                      <a href="#" class="btn bg-dark btn-secondary mt-2 placeholder">ENTRA</a>
+                    </div>
                   </div>
-
-                  <div class="approval-box text-center">
-                    <a href="#" class="btn bg-dark btn-secondary mt-2 placeholder">ENTRA</a>
-                  </div>
                 </div>
+
+
               </div>
 
 
             </div>
 
 
+
+
           </div>
-
-
-
-
         </div>
       </div>
-
-
     </div>
-
-    
-    
 
     <!-- <h2 id="info"></h2> info dell'utente -->
     <!-- <h2 id="creds"></h2> credenziali dell'utente -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

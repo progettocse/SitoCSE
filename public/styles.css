@@ -93,3 +93,30 @@ body {
 .text-danger {
   color: red;
 }
+
+
+// status scadenze
+
+.status-indicator {
+  padding: 5px;
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.status-green {
+  background-color: green;
+  color: white; /* Testo nero per visibilità */
+
+}
+
+.status-yellow {
+  background-color: yellow;
+  color: black; /* Testo nero per visibilità */
+}
+
+.status-red {
+  background-color: red;
+  color: white; /* Testo nero per visibilità */
+
+}

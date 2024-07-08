@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 //const analytics = getAnalytics(app); // for analystics, not in use for now
 
-// È Responsabile
+// È Responsabile -- FUTURO
+/*
 document.addEventListener('DOMContentLoaded', function () {
   const siRSPRadio = document.getElementById('siRSP');
   const noRPSRadio = document.getElementById('noRSP');
@@ -73,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initialize visibility on page load
   toggleFields();
-});
+});*/
 
 // Unilav ha scadenza
 let scadenzaUnilav = "";
@@ -797,8 +798,8 @@ form.addEventListener('submit', function (event) {
   form.classList.add('was-validated');
 
 
-  let email = document.getElementById('email');
-  let password = document.getElementById('password');
+  //let email = document.getElementById('email');
+  //let password = document.getElementById('password');
   let roleDIP = "DIP";
 
 
@@ -810,7 +811,7 @@ form.addEventListener('submit', function (event) {
     // Salva i dati dell'utente nel database
     set(refDB(db, 'Aziende/' + UserCreds.uid + '/DIPENDENTI/' + dipName), {
       Nome: dipName,
-      Email: email.value.trim(),
+      //Email: email.value.trim(), // in caso da aggiungere nel futuro
       role: roleDIP,
       IDAZI: UserCreds.uid, // utile?
       isPreposto: isPreposto,
@@ -857,7 +858,7 @@ form.addEventListener('submit', function (event) {
             });
         }*/
 
-        if (false) {
+        if (false) { // registrazione utente, da fare
           console.log("Iniziando la registrazione dell'utente");
           createUserWithEmailAndPassword(auth, email.value.trim(), password.value.trim())
             .then((credentials) => {

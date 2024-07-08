@@ -34,7 +34,7 @@ let foundRole;
 
 const selectedAziende = [];
 
-
+let cseId;
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.getElementById("dipendentiA").remove();
 
           // ID del CSE specifico
-          const cseId = UserInfo.ID;
+          cseId = UserInfo.ID;
           const cantieriSnapshot = await get(child(dbRef, 'Cantieri'));
 
           //creaModifyBtn();
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (aziende[IDAZI].Nome == aziendaId) {
 
                       aziendeNameList.push(" " + aziende[IDAZI].Nome);
-                      console.log(aziende[IDAZI].Nome);
+                      //console.log(aziende[IDAZI].Nome);
 
                     }
                   }
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         } else if (UserInfo.role === "AZI") {
           creaDipendentiABtn();
-          console.log(UserInfo.Nome);
+          //console.log(UserInfo.Nome);
           const cantieriSnapshot = await get(child(dbRef, 'Cantieri'));
 
           if (cantieriSnapshot.exists()) {
@@ -162,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
               }
 
               for (let azienda in cantiere.Aziende) {
-                console.log(cantiere.Aziende[azienda].Nome);
+                //console.log(cantiere.Aziende[azienda].Nome);
                 if (cantiere.Aziende[azienda].Nome == UserInfo.Nome) {
-                  console.log("ENTRATO");
+                  //console.log("ENTRATO");
                   const card = document.createElement('div');
                   card.className = 'card mb-3';
                   card.innerHTML = `
@@ -315,13 +315,15 @@ function creaModifyBtn() {
   modifyBtnContainer.appendChild(button);
 }
 
-function creaDipendentiABtn(){
+// crea opzione Dipendenti per visualizzazione da azienda
+function creaDipendentiABtn() {
   const dipendentiABtnContainer = document.getElementById('dipendentiA');
   dipendentiABtnContainer.setAttribute("class", "btn btn-toggle align-items-center rounded");
   dipendentiABtnContainer.innerHTML = `Dipendenti`;
   dipendentiABtnContainer.setAttribute("href", "dipendenti.html");
 }
 
+// fa vedere il modale e mostra il bottone "crea un cantiere"
 function creaAggiungiBtn() {
   const modifyBtnContainer = document.getElementById('addbtn');
 
@@ -377,6 +379,7 @@ document.getElementById('addAziendaBtn').addEventListener('click', function () {
 // Convalida del form
 document.getElementById('MainForm').addEventListener('submit', function (event) {
   const aziendeSelezionate = document.getElementById('aziende-selezionate');
+
   if (aziendeSelezionate.children.length === 0) {
     document.getElementById('aziendeFeedback').style.display = 'block';
     event.preventDefault();
@@ -412,7 +415,7 @@ async function popolaElencoAziende() {
 document.addEventListener('DOMContentLoaded', () => {
   let MainForm = document.getElementById('MainForm');
 
-  let CreaCantiere = evt => {
+  let CreaCantiere = async evt => {
     evt.preventDefault();
 
     // Aggiunta nel database 
@@ -425,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Se tutti gli elementi esistono, prosegui con il codice
     if (cantiereName != "" && startDate != "" && endDate != "" && cantiereAddress != "" && provinciaCantiere != "") {
       // Log dei valori per debugging
-      console.log(cantiereName.value, startDate.value, endDate.value, cantiereAddress.value, provinciaCantiere.value);
+      //console.log(cantiereName.value, startDate.value, endDate.value, cantiereAddress.value, provinciaCantiere.value);
 
       // Creare il nuovo cantiere nel database
       let newCantiereRef = ref(db, 'Cantieri/' + cantiereName.value);
@@ -449,19 +452,38 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Errore nella creazione del cantiere:', error);
       });
 
-      // Creare il nuovo cantiere nel database
+      console.log(selectedAziende);
+
+      // Per ogni azienda, la aggiunge al database con il relativo nome
       for (let azienda in selectedAziende) {
 
-        let listaAziendeRef = ref(db, 'Cantieri/' + cantiereName.value + "/Aziende/" + selectedAziende[azienda]);
+        const listaAziendeRef = ref(db, 'Cantieri/' + cantiereName.value + "/Aziende/" + selectedAziende[azienda]);
         set(listaAziendeRef, {
           Nome: selectedAziende[azienda],
         }).then(() => {
-          console.log('Azienda aggiunta con successo');
+          console.log('Azienda aggiunta con successo:' + selectedAziende[azienda]);
+
+          let testoMsg = 'Questa azienda è stata aggiunta al cantiere ' + cantiereName.value + '! Selezionalo nella schermata "Home" e aggiungi i dipendenti che ci lavoreranno.';
+
+
+
+          let newNotificaRef = ref(db, 'Cantieri/' + cantiereName.value + "/Aziende/" + selectedAziende[azienda] + "/Notifiche/notifica0");
+          set(newNotificaRef, {
+            testo: testoMsg,
+            letto: false,
+          }).then(() => {
+            console.log('Notifica creata con successo');
+          }).catch((error) => {
+            console.error('Errore durante la creazione della notifica:', error);
+          });
+
+
         }).catch((error) => {
           console.error('Errore durante l\'aggiunta della azienda:', error);
         });
 
       }
+
     } else {
       console.error('Tutti i campi sono obbligatori');
     }
@@ -470,6 +492,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   MainForm.addEventListener('submit', CreaCantiere);
 });
-
-
 
