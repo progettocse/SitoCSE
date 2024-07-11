@@ -1,16 +1,20 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
+    ".read": true, 
+    ".write": true, 
+
     "UsersList": {
-      "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
-      }
+        ".read": true,
+        ".write": true
     },
     "Worksites": {
-      ".read": "auth != null",
-      ".write": "auth != null"
+      ".read": "auth != null", 
+      ".write": "auth != null" 
+    },
+
+    "GanttKevin": {
+      ".read": true,
+      ".write": "auth != null && data.parent().child('UsersList').child(auth.uid).child('role').val() === 'CSE'"
     }
   }
 }

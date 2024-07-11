@@ -10,11 +10,20 @@
 
   <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-bundle.min.js"></script>
 
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.1/dist/fullcalendar.min.css" rel="stylesheet" />
+
 
   <script type="module" src="cantiere.js" defer></script>
   <script type="module" src="gantt.js" defer></script>
   <link rel="stylesheet" href="styles.css">
 
+  <style>
+    #calendar {
+      width: 100%;
+      margin: 20px auto;
+    }
+  </style>
 
 
 </head>
@@ -38,7 +47,7 @@
               </a>
             </li>
             <li class="mb-1">
-              <a class="btn btn-toggle align-items-center rounded">
+              <a class="btn btn-toggle align-items-center rounded"  href="paginaNotifiche.html">
                 Notifiche
               </a>
             </li>
@@ -73,12 +82,7 @@
               <h1 class="mb-4 col-sm">CRONOPROGRAMMA</h1>
             </div>
 
-            <div class="col"></div>
-
-            <div class="col"><button class="btn btn-primary mb-3" id="modifica">MODIFICA</button>
-            </div>
-
-            <div class="container">
+            <div class="container-md ">
               <div id="gantt"></div>
             </div>
 

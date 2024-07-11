@@ -36,7 +36,7 @@
               </a>
             </li>
             <li class="mb-1">
-              <a class="btn btn-toggle align-items-center rounded">
+              <a class="btn btn-toggle align-items-center rounded" href="paginaNotifiche.html">
                 Notifiche
               </a>
             </li>
@@ -78,6 +78,7 @@
 
             <div class="col"><button class="btn btn-primary mb-3" id="modifica">MODIFICA</button>
             </div>
+            <div class="col-4" id="respbtn"></div>
 
           </div>
           <div class="row">
@@ -105,7 +106,7 @@
                   </div>
 
                   <div class="approval-box text-center">
-                    <a href="#" class="btn bg-dark btn-secondary mt-2 placeholder">ENTRA</a>
+                    <a href="#" class="btn bg-dark btn-secondary mt-2 placeholder">APRI</a>
                   </div>
                 </div>
               </div>
@@ -114,6 +115,73 @@
             </div>
 
 
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addModalLabel">Aggiungi un Responsabile</h5>
+                </div>
+                <div class="modal-body">
+                  <form class="needs-validation" id="MainForm" novalidate>
+                    <div class="row g-3">
+                      <div class="col-12">
+                        <label for="aziende" class="form-label">Seleziona un dipendente:</label>
+                        <div class="input-group mb-3">
+                          <select class="form-select" id="elencoDip">
+                            <option value="" selected>Scegli un dipendente, poi clicca "Seleziona"</option>
+                            <!-- QUI VIENE AGGIUNTI IN AUTOMATICO 1 DIPENDENTE -->
+                          </select>
+                          <button class="btn btn-primary" type="button" id="addDipBtn">Seleziona</button>
+                        </div>
+                        <div id="dip-selezionato" class="mb-3"></div>
+                        <div class="invalid-feedback" id="dipFeedback">
+                          Selezionare un dipendente.
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <label for="email" class="form-label">Email</label>
+                        <small id="passwordHelpInline" class="text-muted">
+                          (serve per accedere al sito)
+                      </small>
+                        <input type="email" class="form-control" id="email" placeholder="email@example.com" required>
+                        <div class="invalid-feedback">
+                          Inserire un'email valida.
+                        </div>
+                      </div>
+          
+                      <div class="col-md-8">
+                        <label for="password" class="form-label">Password</label>
+                        <small id="passwordHelpInline" class="text-muted">
+                          (deve contenere almeno 6 caratteri)
+                      </small>
+                        <input type="password" class="form-control" id="password" placeholder="password" autocomplete="on" required>
+                        <div class="invalid-feedback">
+                          Inserire una password valida.
+                        </div>
+                      </div>
+          
+                      <div class="col-md-8">
+                        <label for="controlPassword" class="form-label">Conferma la password</label>
+                        <input type="password" class="form-control" id="controlPassword" placeholder="password" autocomplete="on" required>
+                        <div class="invalid-feedback">
+                          Le password non corrispondono.
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                      <button class="btn btn-primary" type="submit" id="creaResponsabile">Aggiungi Responsabile</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
 
 

@@ -811,7 +811,7 @@ form.addEventListener('submit', function (event) {
     // Salva i dati dell'utente nel database
     set(refDB(db, 'Aziende/' + UserCreds.uid + '/DIPENDENTI/' + dipName), {
       Nome: dipName,
-      //Email: email.value.trim(), // in caso da aggiungere nel futuro
+      email: "", // in caso da aggiungere nel futuro
       role: roleDIP,
       IDAZI: UserCreds.uid, // utile?
       isPreposto: isPreposto,
