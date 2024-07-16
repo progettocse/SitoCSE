@@ -47,7 +47,7 @@
               </a>
             </li>
             <li class="mb-1">
-              <a class="btn btn-toggle align-items-center rounded"  href="paginaNotifiche.html">
+              <a class="btn btn-toggle align-items-center rounded" href="paginaNotifiche.html">
                 Notifiche
               </a>
             </li>
@@ -59,7 +59,7 @@
                 Account
               </a>
             </li>
-            
+
             <li class="border-top my-3"></li>
             <li class="mb-1">
               <div class="col text-center">
@@ -74,12 +74,25 @@
       </div>
 
       <div class="col">
-        <h2 id="nomeCantiere" class="text-center"></h2>
+        <h1 id="nomeCantiere" class="text-center align-items-center"></h1>
+
+        <div class="row">
+          <div class="row">
+            <button class=" btn btn-primary" id="ticket">VISUALIZZA I TUOI TICKET</button>
+            <!-- NUMERO DI TICKET DA CONTROLLARE-->
+            
+          </div>
+          <div class="col text-center"> TICKET APERTI: <span class="badge bg-secondary" id="ticketAperti"> 0 </span> </div>
+          <!-- <div class="col text-center"> TICKET IN ATTESA: <span class="badge bg-secondary" id="ticketAttesa">0</span> </div> -->
+
+
+        </div>
+
 
         <div class="container my-5">
           <div class="row">
             <div class="col">
-              <h1 class="mb-4 col-sm">CRONOPROGRAMMA</h1>
+              <h2 class="mb-4 col-sm">CRONOPROGRAMMA</h2>
             </div>
 
             <div class="container-md ">
@@ -89,14 +102,19 @@
           </div>
           <div class="container my-5">
             <div class="row">
-              <div class="col">
-                <h1 class="mb-4 col-sm" id="aziOrDip"></h1>
+              <div class="col-6">
+                <h2 class="mb-4 col-sm" id="aziOrDip"></h2>
               </div>
 
+              <div class="col"></div>
 
               <div class="col"><button class="btn btn-primary mb-3" id="modifica">MODIFICA</button>
               </div>
+              <div class="col-4" id="addDip"></div>
 
+            </div>
+            <div class="row">
+              <div id="dipendenti"></div>
 
               <div id="aziende">
 
@@ -126,6 +144,42 @@
 
             </div>
 
+            <!-- MODAL -->
+            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">Aggiungi i dipendenti al cantiere</h5>
+                  </div>
+                  <div class="modal-body">
+                    <form class="needs-validation" id="MainForm" novalidate>
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <label for="aziende" class="form-label">Seleziona un dipendente:</label>
+                          <div class="input-group mb-3">
+                            <select class="form-select" id="elencoDip">
+                              <option value="" selected>Scegli un dipendente, poi clicca "Seleziona"</option>
+                              <!-- QUI VIENE AGGIUNTI IN AUTOMATICO 1 DIPENDENTE -->
+                            </select>
+                            <button class="btn btn-primary" type="button" id="addDipBtn">Seleziona</button>
+                          </div>
+                          <div id="dip-selezionati" class="mb-3"></div>
+                          <div class="invalid-feedback" id="dipFeedback">
+                            Selezionare un dipendente.
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                        <button class="btn btn-primary" type="submit" id="aggiungiDipendenti">Aggiungi</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
 

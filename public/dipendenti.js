@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!isResponsabile && responsabileElement) responsabileElement.style.display = "none";
 
                         listaDipendentiContainer.appendChild(card);
+                    
                     }
 
                     // Aggiungi evento click per tutti i pulsanti "Entra"
@@ -350,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             .then(() => {
                                 set(ref(db, 'UsersList/' + credentials.user.uid), {
                                     appnotifyToken: "",
-                                    nameSurname: selectedDipendente,
+                                    Nome: selectedDipendente,
                                     email: dipEmail.value.trim(),
                                     role: "DIP",
                                     azi: nomeAzienda,

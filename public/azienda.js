@@ -47,38 +47,87 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     for (let singolaAzienda in aziende) {
 
-                        if (aziende[singolaAzienda].Nome === UserAzienda.azienda) {
+                        if (aziende[singolaAzienda].Nome === UserAzienda.azienda) { 
                             //console.log(aziende[singolaAzienda].DIPENDENTI); // tutti i dipendenti dell'azienda
+                            let dipendenti = aziende[singolaAzienda].DIPENDENTI
 
-                            for (let dipendente in aziende[singolaAzienda].DIPENDENTI) {
-
-                                //console.log(aziende[singolaAzienda].DIPENDENTI[dipendente]); // ogni singolo dipendente dell'azienda
+                            for (let dipendente in dipendenti) {
+                                console.log(dipendenti[dipendente].Nome);
+                                let isAntincendio = dipendenti[dipendente].isAntincendio;
+                                let isGestioneEmergenze = dipendenti[dipendente].isEmergency;
+                                let isPreposto = dipendenti[dipendente].isPreposto;
+                                let isResponsabile = dipendenti[dipendente].isResponsabile;
+                                let abc = dipendenti[dipendente].abc.toUpperCase();
 
                                 const card = document.createElement('div');
                                 card.className = 'card mb-3';
                                 card.innerHTML = `
-                <div class="card-body d-flex align-items-center">
-                  <div class="flex-grow-1">
-                    <h5 class="card-title">${aziende[singolaAzienda].DIPENDENTI[dipendente].Nome} ${aziende[singolaAzienda].DIPENDENTI[dipendente].Cognome}</h5>
-                    <p class="card-text"> ${aziende[singolaAzienda].DIPENDENTI[dipendente].CF} </p>
+                            <div class="card-body d-flex align-items-center justify-content-between">
+    <div class="d-flex flex-column flex-grow-1">
+        <h2 class="card-title">${dipendenti[dipendente].Nome}</h2>
+        <div class="d-flex flex-wrap"> 
+            <div class="col-auto antincendio ms-1">
+                <button type="button" class="btn btn-md btn-danger" disabled>Antincendio</button>
+            </div>
+            <div class="col-auto gestioneEmergenze ms-1">
+                <button type="button" class="btn btn-md btn-warning" disabled>Gestione Emergenze: ${abc}</button>
+            </div>
+            <div class="col-auto preposto ms-1">
+                <button type="button" class="btn btn-md btn-info" disabled>Preposto</button>
+            </div>
+            <div class="col-auto responsabile ms-1">
+                <button type="button" class="btn btn-md btn-success" disabled>Responsabile</button>
+            </div>
+        </div>
+    </div>
+    <div class="approval-box text-center">
+        <a href="cantiere.html" class="btn btn-dark mt-2 enter-btn" data-dipendente-id="${dipendenti[dipendente].Nome}">APRI</a>
+    </div>
+</div>
+                        `;
 
-                  </div>
+                                // Hide the relevant sections if the conditions are not met
+                                let antincendioElement = card.querySelector(".antincendio");
+                                if (!isAntincendio && antincendioElement) antincendioElement.style.display = "none";
 
-                 
+                                let gestioneEmergenzeElement = card.querySelector(".gestioneEmergenze");
+                                if (!isGestioneEmergenze && gestioneEmergenzeElement) gestioneEmergenzeElement.style.display = "none";
 
-                  <div class="approval-box text-center">
-                    
-                  <div> <a href="#.html" class="btn btn-dark mt-2 enter-btn" data-dipendente-id="
-                    ${aziende[singolaAzienda].DIPENDENTI[dipendente].IDDIP}
-                  ">ENTRA</a> </div>
+                                let prepostoElement = card.querySelector(".preposto");
+                                if (!isPreposto && prepostoElement) prepostoElement.style.display = "none";
 
-                  </div>
-                </div>
-              `;
+                                let responsabileElement = card.querySelector(".responsabile");
+                                if (!isResponsabile && responsabileElement) responsabileElement.style.display = "none";
 
                                 listaDipendentiContainer.appendChild(card);
-
-
+                                /*
+                                                                //console.log(aziende[singolaAzienda].DIPENDENTI[dipendente]); // ogni singolo dipendente dell'azienda
+                                
+                                                                const card = document.createElement('div');
+                                                                card.className = 'card mb-3';
+                                                                card.innerHTML = `
+                                                <div class="card-body d-flex align-items-center">
+                                                  <div class="flex-grow-1">
+                                                    <h5 class="card-title">${aziende[singolaAzienda].DIPENDENTI[dipendente].Nome} ${aziende[singolaAzienda].DIPENDENTI[dipendente].Cognome}</h5>
+                                                    <p class="card-text"> ${aziende[singolaAzienda].DIPENDENTI[dipendente].CF} </p>
+                                
+                                                  </div>
+                                
+                                                 
+                                
+                                                  <div class="approval-box text-center">
+                                                    
+                                                  <div> <a href="#.html" class="btn btn-dark mt-2 enter-btn" data-dipendente-id="
+                                                    ${aziende[singolaAzienda].DIPENDENTI[dipendente].IDDIP}
+                                                  ">ENTRA</a> </div>
+                                
+                                                  </div>
+                                                </div>
+                                              `;
+                                
+                                                                listaDipendentiContainer.appendChild(card);
+                                
+                                */
                             }
                         }
                     }
@@ -159,7 +208,7 @@ let CheckCreds = () => {
     }
 };
 
-function creaDipendentiABtn(){
+function creaDipendentiABtn() {
     const dipendentiABtnContainer = document.getElementById('dipendentiA');
     dipendentiABtnContainer.setAttribute("class", "btn btn-toggle align-items-center rounded");
     dipendentiABtnContainer.innerHTML = `Dipendenti`;

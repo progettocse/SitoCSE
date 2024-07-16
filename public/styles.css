@@ -120,3 +120,57 @@ body {
   color: white; /* Testo nero per visibilità */
 
 }
+
+.chat-container {
+  display: flex;
+  flex-direction: column-reverse; /* Mostra i messaggi recenti in basso */
+  height: 80vh;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  flex-direction: column-reverse; /* Mostra i messaggi recenti in basso */
+}
+
+.chat-input-container {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  z-index: 1000;
+}
+
+.titoloCardTicket{
+  z-index: 1000;
+}
+
+.chat-message-right {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem; /* Aggiungi un po' di spazio tra i messaggi */
+}
+
+.chat-message-left {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 1rem; /* Aggiungi un po' di spazio tra i messaggi */
+}
+
+.chat-message-right > div,
+.chat-message-left > div {
+  max-width: 60%;
+}
+
+.bg-light {
+  background-color: #f5f5f5 !important;
+}
+
+.bg-grey {
+  background-color: #3f3f3f !important;
+  color: #f5f5f5;
+}
+
+.nomeUtente {
+ font-weight: bold;
+}
+

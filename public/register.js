@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
           // Salva i dati dell'utente nel database
           set(ref(db, 'UsersList/' + credentials.user.uid), {
-            nameSurname: info.value.trim(),
+            Nome: info.value.trim(),
             email: email.value.trim(),
             role: roleValue,
           })
